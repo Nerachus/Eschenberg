@@ -6,7 +6,6 @@ import io.varakh.eb.Eschenberg
 import ktx.log.debug
 import ktx.log.logger
 
-
 private val log = logger<MenuScreen>()
 
 class MenuScreen(game: Eschenberg) : EschenbergScreen(game) {
