@@ -1,34 +1,62 @@
 
 graphics.png
-size: 64,16
+size: 1024,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ship_down
+HeroKnight_Idle
   rotate: false
   xy: 2, 2
-  size: 10, 9
-  orig: 10, 9
+  size: 100, 55
+  orig: 100, 55
   offset: 0, 0
-  index: -1
-ship_left
+  index: 0
+HeroKnight_Idle
   rotate: false
-  xy: 26, 2
-  size: 10, 9
-  orig: 10, 9
+  xy: 104, 2
+  size: 100, 55
+  orig: 100, 55
   offset: 0, 0
-  index: -1
-ship_right
+  index: 1
+HeroKnight_Idle
   rotate: false
-  xy: 14, 2
-  size: 10, 9
-  orig: 10, 9
+  xy: 206, 2
+  size: 100, 55
+  orig: 100, 55
   offset: 0, 0
-  index: -1
-ship_up
+  index: 2
+HeroKnight_Idle
   rotate: false
-  xy: 38, 2
-  size: 10, 9
-  orig: 10, 9
+  xy: 308, 2
+  size: 100, 55
+  orig: 100, 55
   offset: 0, 0
-  index: -1
+  index: 3
+HeroKnight_Idle
+  rotate: false
+  xy: 410, 2
+  size: 100, 55
+  orig: 100, 55
+  offset: 0, 0
+  index: 4
+HeroKnight_Idle
+  rotate: false
+  xy: 512, 2
+  size: 100, 55
+  orig: 100, 55
+  offset: 0, 0
+  index: 5
+HeroKnight_Idle
+  rotate: false
+  xy: 614, 2
+  size: 100, 55
+  orig: 100, 55
+  offset: 0, 0
+  index: 6
+HeroKnight_Idle
+  rotate: false
+  xy: 716, 2
+  size: 100, 55
+  orig: 100, 55
+  offset: 0, 0
+  index: 7

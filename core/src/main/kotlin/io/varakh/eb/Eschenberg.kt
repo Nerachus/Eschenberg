@@ -6,9 +6,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.utils.viewport.FitViewport
-import io.varakh.eb.ecs.system.PlayerAnimationSystem
-import io.varakh.eb.ecs.system.PlayerInputSystem
-import io.varakh.eb.ecs.system.RenderSystem
+import io.varakh.eb.ecs.system.*
 import io.varakh.eb.screen.EschenbergScreen
 import io.varakh.eb.screen.GameScreen
 import io.varakh.eb.screen.LoadingScreen
@@ -18,29 +16,29 @@ import ktx.log.debug
 import ktx.log.logger
 
 const val UNIT_SCALE = 1 / 16f
+const val V_WIDTH = 16f
+const val V_HEIGHT = 9f
+
 private val log = logger<Eschenberg>()
 
 class Eschenberg : KtxGame<EschenbergScreen>() {
 
     private val graphicsAtlas by lazy { TextureAtlas(Gdx.files.internal("graphics/graphics.atlas")) }
 
-    private val regionUp by lazy { graphicsAtlas.findRegion("ship_up") }
-    private val regionRight by lazy { graphicsAtlas.findRegion("ship_right") }
-    private val regionDown by lazy { graphicsAtlas.findRegion("ship_down") }
-    private val regionLeft by lazy { graphicsAtlas.findRegion("ship_left") }
-
     val batch by lazy { SpriteBatch() }
     val viewport = FitViewport(16f, 9f)
     val engine: PooledEngine by lazy {
         PooledEngine().apply {
             addSystem(PlayerInputSystem(viewport))
+            addSystem(MoveSystem())
             addSystem(PlayerAnimationSystem(
-                    regionUp = regionUp,
-                    regionRight = regionRight,
-                    regionDown = regionDown,
-                    regionLeft = regionLeft
+                    regionUp = graphicsAtlas.findRegion("HeroKnight_Idle", 0),
+                    regionRight = graphicsAtlas.findRegion("HeroKnight_Idle", 3),
+                    regionDown = graphicsAtlas.findRegion("HeroKnight_Idle", 5),
+                    regionLeft = graphicsAtlas.findRegion("HeroKnight_Idle", 7)
             ))
             addSystem(RenderSystem(batch, viewport))
+            addSystem(RemoveSystem())
         }
     }
 
@@ -51,5 +49,12 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
         addScreen(MenuScreen(this))
         addScreen(GameScreen(this))
         setScreen<GameScreen>()
+    }
+
+    override fun dispose() {
+        super.dispose()
+        log.debug { "Sprites in batch: ${batch.maxSpritesInBatch}" }
+        batch.dispose()
+        graphicsAtlas.dispose()
     }
 }
