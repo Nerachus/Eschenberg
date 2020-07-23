@@ -9,7 +9,6 @@ import io.varakh.eb.ecs.component.TransformComponent
 import ktx.ashley.allOf
 import ktx.ashley.get
 import ktx.graphics.use
-import ktx.log.error
 import ktx.log.logger
 
 private val log = logger<RenderSystem>()
@@ -30,12 +29,10 @@ class RenderSystem(private val batch: SpriteBatch,
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
         val transform = entity[TransformComponent.mapper]
-        require(transform != null) { "Entity |entity| must have a TransformComponent. entity=$entity" }
+        require(transform != null) { "Entity must have a TransformComponent. entity=$entity" }
         val graphic = entity[GraphicComponent.mapper]
-        require(graphic != null) { "Entity |entity| must have a GraphicComponent. entity=$entity" }
-
-        if (graphic.sprite.texture == null) {
-            log.error { "Entity has no texture for rendering. entity=$entity" }
+        require(graphic != null && graphic.sprite.texture != null) {
+            "Entity must have a GraphicComponent with texture. entity=$entity"
         }
 
         graphic.sprite.run {
