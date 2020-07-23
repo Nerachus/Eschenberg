@@ -18,8 +18,7 @@ class DebugSystem : IntervalIteratingSystem(allOf(PlayerComponent::class).get(),
     }
 
     override fun processEntity(entity: Entity) {
-        val player = entity[PlayerComponent.mapper]
-        require(player != null) { "Entity must have a PlayerComponent. entity=$entity" }
+        val player = entity[PlayerComponent.mapper]!!
 
         Gdx.graphics.setTitle("Player Health = ${player.health} - Player Shield = ${player.shield}")
 

@@ -20,10 +20,8 @@ class DamageSystem : IteratingSystem(
     private var accumulator = 0f
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val player = entity[PlayerComponent.mapper]
-        require(player != null) { "Entity must have a PlayerComponent. entity=$entity" }
-        val transform = entity[TransformComponent.mapper]
-        require(transform != null) { "Entity must have a TransformComponent. entity=$entity" }
+        val player = entity[PlayerComponent.mapper]!!
+        val transform = entity[TransformComponent.mapper]!!
 
         if (transform.position.y > DAMAGE_AREA_HEIGHT) return
 

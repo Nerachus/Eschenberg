@@ -28,8 +28,7 @@ class RenderSystem(private val batch: SpriteBatch,
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val transform = entity[TransformComponent.mapper]
-        require(transform != null) { "Entity must have a TransformComponent. entity=$entity" }
+        val transform = entity[TransformComponent.mapper]!!
         val graphic = entity[GraphicComponent.mapper]
         require(graphic != null && graphic.sprite.texture != null) {
             "Entity must have a GraphicComponent with texture. entity=$entity"
@@ -37,7 +36,8 @@ class RenderSystem(private val batch: SpriteBatch,
 
         graphic.sprite.run {
             rotation = transform.rotationDeg
-            setBounds(transform.position.x, transform.position.y, transform.size.x, transform.size.y)
+            setBounds(transform.interpolatedPosition.x, transform.interpolatedPosition.y,
+                    transform.size.x, transform.size.y)
             draw(batch)
         }
     }

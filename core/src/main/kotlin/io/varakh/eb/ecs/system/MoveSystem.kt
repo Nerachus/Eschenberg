@@ -3,6 +3,7 @@ package io.varakh.eb.ecs.system
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
 import com.badlogic.gdx.math.MathUtils.clamp
+import com.badlogic.gdx.math.MathUtils.lerp
 import io.varakh.eb.V_HEIGHT
 import io.varakh.eb.V_WIDTH
 import io.varakh.eb.ecs.component.*
@@ -21,15 +22,26 @@ class MoveSystem : IteratingSystem(
         accumulator += deltaTime
         while (accumulator >= UPDATE_RATE) {
             accumulator -= UPDATE_RATE
+
+            entities.forEach {
+                it[TransformComponent.mapper]!!.let { tf -> tf.prevPosition.set(tf.position) }
+            }
             super.update(UPDATE_RATE)
+        }
+        val alpha = accumulator / UPDATE_RATE
+        entities.forEach {
+            it[TransformComponent.mapper]!!.let { tf ->
+                tf.interpolatedPosition.set(
+                        lerp(tf.prevPosition.x, tf.position.x, alpha),
+                        lerp(tf.prevPosition.y, tf.position.y, alpha),
+                        tf.position.z)
+            }
         }
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val transform = entity[TransformComponent.mapper]
-        require(transform != null) { "Entity must have a TransformComponent. entity=$entity" }
-        val move = entity[MoveComponent.mapper]
-        require(move != null) { "Entity must have a MoveComponent. entity=$entity" }
+        val transform = entity[TransformComponent.mapper]!!
+        val move = entity[MoveComponent.mapper]!!
 
         val player = entity[PlayerComponent.mapper]
         if (player != null) {

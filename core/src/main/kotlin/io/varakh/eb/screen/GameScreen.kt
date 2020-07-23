@@ -6,13 +6,15 @@ import ktx.ashley.entity
 import ktx.ashley.with
 import ktx.log.debug
 import ktx.log.logger
+import kotlin.math.min
 
 private val log = logger<GameScreen>()
+private const val MAX_FRAME_RATE = 1 / 100f
 
 class GameScreen(game: Eschenberg) : EschenbergScreen(game) {
     private val player = engine.entity {
         with<TransformComponent> {
-            position.set(8f, 4.5f, 0f)
+            setInitialPosition(8f, 4.5f, 0f)
         }
         with<GraphicComponent>()
         with<MoveComponent>()
@@ -25,6 +27,6 @@ class GameScreen(game: Eschenberg) : EschenbergScreen(game) {
     }
 
     override fun render(delta: Float) {
-        engine.update(delta)
+        engine.update(min(delta, MAX_FRAME_RATE))
     }
 }

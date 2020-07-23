@@ -23,10 +23,8 @@ class PlayerInputSystem(private val viewport: Viewport)
     private val facingVector = Vector2()
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val facing = entity[FacingComponent.mapper]
-        require(facing != null) { "Entity must have a FacingComponent. entity=$entity" }
-        val transform = entity[TransformComponent.mapper]
-        require(transform != null) { "Entity must have a TransformComponent. entity=$entity" }
+        val facing = entity[FacingComponent.mapper]!!
+        val transform = entity[TransformComponent.mapper]!!
 
         facingVector.x = Gdx.input.x.toFloat()
         facingVector.y = Gdx.input.y.toFloat()

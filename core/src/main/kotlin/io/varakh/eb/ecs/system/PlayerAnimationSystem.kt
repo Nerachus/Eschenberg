@@ -31,16 +31,14 @@ class PlayerAnimationSystem(private val regionUp: TextureRegion,
     }
 
     override fun entityAdded(entity: Entity) {
-        val graphic = entity[GraphicComponent.mapper]
-        require(graphic != null) { "Entity must have a GraphicComponent. entity=$entity" }
+        val graphic = entity[GraphicComponent.mapper]!!
         graphic.setSpriteRegion(regionDown)
     }
 
     override fun entityRemoved(entity: Entity) = Unit
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val facing = entity[FacingComponent.mapper]
-        require(facing != null) { "Entity must have a FacingComponent. entity=$entity" }
+        val facing = entity[FacingComponent.mapper]!!
         val graphic = entity[GraphicComponent.mapper]
         require(graphic != null && graphic.sprite.texture != null) {
             "Entity must have a GraphicComponent with texture. entity=$entity"

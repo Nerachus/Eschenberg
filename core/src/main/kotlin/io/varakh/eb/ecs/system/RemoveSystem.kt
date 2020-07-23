@@ -9,8 +9,7 @@ import ktx.ashley.get
 class RemoveSystem : IteratingSystem(allOf(RemovedComponent::class).get()) {
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val removed = entity[RemovedComponent.mapper]
-        require(removed != null) { "Entity must have a RemovedComponent. entity=$entity" }
+        val removed = entity[RemovedComponent.mapper]!!
 
         removed.delay -= deltaTime
         if (removed.delay <= 0f) engine.removeEntity(entity)
