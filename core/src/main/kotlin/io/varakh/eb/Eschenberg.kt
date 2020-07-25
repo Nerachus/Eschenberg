@@ -16,8 +16,8 @@ import ktx.log.debug
 import ktx.log.logger
 
 const val UNIT_SCALE = 1 / 16f
-const val V_WIDTH = 16f
-const val V_HEIGHT = 9f
+const val WORLD_WIDTH = 16f
+const val WORLD_HEIGHT = 9f
 
 private val log = logger<Eschenberg>()
 
@@ -26,7 +26,7 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
     private val graphicsAtlas by lazy { TextureAtlas(Gdx.files.internal("graphics/graphics.atlas")) }
 
     val batch by lazy { SpriteBatch() }
-    val viewport = FitViewport(16f, 9f)
+    val viewport = FitViewport(WORLD_WIDTH, WORLD_HEIGHT)
     val engine: PooledEngine by lazy {
         PooledEngine().apply {
             addSystem(PlayerInputSystem(viewport))

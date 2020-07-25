@@ -4,8 +4,8 @@ import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
 import com.badlogic.gdx.math.MathUtils.clamp
 import com.badlogic.gdx.math.MathUtils.lerp
-import io.varakh.eb.V_HEIGHT
-import io.varakh.eb.V_WIDTH
+import io.varakh.eb.WORLD_HEIGHT
+import io.varakh.eb.WORLD_WIDTH
 import io.varakh.eb.ecs.component.*
 import ktx.ashley.allOf
 import ktx.ashley.exclude
@@ -73,9 +73,9 @@ class MoveSystem : IteratingSystem(
 
     private fun moveEntity(transform: TransformComponent, move: MoveComponent, deltaTime: Float) {
         transform.position.x = clamp(transform.position.x + move.speed.x * deltaTime,
-                0f, V_WIDTH - transform.size.x)
+                0f, WORLD_WIDTH - transform.size.x)
         transform.position.y = clamp(transform.position.y + move.speed.y * deltaTime,
-                0f, V_HEIGHT - transform.size.y)
+                0f, WORLD_HEIGHT - transform.size.y)
     }
 
     companion object {

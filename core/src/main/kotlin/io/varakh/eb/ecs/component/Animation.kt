@@ -14,7 +14,8 @@ enum class AnimationType(val atlasKey: String,
                          val mode: Animation.PlayMode = Animation.PlayMode.LOOP,
                          val speedRate: Float = 1f) {
     NONE(""),
-    DARK_MATTER("dark_matter")
+    DARK_MATTER("dark_matter", speedRate = 2f),
+    PLAYER_IDLE("HeroKnight_Idle")
 }
 
 class Animation2D(val type: AnimationType,

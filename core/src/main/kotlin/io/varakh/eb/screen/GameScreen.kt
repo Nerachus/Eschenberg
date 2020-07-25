@@ -1,7 +1,7 @@
 package io.varakh.eb.screen
 
 import io.varakh.eb.Eschenberg
-import io.varakh.eb.V_WIDTH
+import io.varakh.eb.WORLD_WIDTH
 import io.varakh.eb.ecs.component.*
 import io.varakh.eb.ecs.system.DamageSystem
 import ktx.ashley.entity
@@ -18,6 +18,7 @@ class GameScreen(game: Eschenberg) : EschenbergScreen(game) {
         with<TransformComponent> {
             setInitialPosition(8f, 4.5f, 0f)
         }
+        with<AnimationComponent> { type = AnimationType.PLAYER_IDLE }
         with<GraphicComponent>()
         with<MoveComponent>()
         with<PlayerComponent>()
@@ -27,7 +28,7 @@ class GameScreen(game: Eschenberg) : EschenbergScreen(game) {
     override fun show() {
         log.debug { "Game screen is shown." }
         engine.entity {
-            with<TransformComponent> { size.set(V_WIDTH, DamageSystem.DAMAGE_AREA_HEIGHT) }
+            with<TransformComponent> { size.set(WORLD_WIDTH, DamageSystem.DAMAGE_AREA_HEIGHT) }
             with<AnimationComponent> { type = AnimationType.DARK_MATTER }
             with<GraphicComponent>()
         }
