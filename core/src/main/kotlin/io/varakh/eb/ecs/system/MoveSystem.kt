@@ -28,6 +28,7 @@ class MoveSystem : IteratingSystem(
             }
             super.update(UPDATE_RATE)
         }
+
         val alpha = accumulator / UPDATE_RATE
         entities.forEach {
             it[TransformComponent.mapper]!!.let { tf ->
