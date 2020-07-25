@@ -9,9 +9,11 @@ import ktx.app.KtxScreen
 abstract class EschenbergScreen(val game: Eschenberg,
                                 val batch: SpriteBatch = game.batch,
                                 val engine: PooledEngine = game.engine,
-                                val viewport: Viewport = game.viewport) : KtxScreen {
+                                val gameViewport: Viewport = game.gameViewport,
+                                val pixelViewport: Viewport = game.pixelViewport) : KtxScreen {
 
     override fun resize(width: Int, height: Int) {
-        viewport.update(width, height, true)
+        pixelViewport.update(width, height, true)
+        gameViewport.update(width, height, true)
     }
 }

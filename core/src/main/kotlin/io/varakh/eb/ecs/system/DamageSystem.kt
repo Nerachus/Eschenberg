@@ -41,6 +41,6 @@ class DamageSystem : IteratingSystem(
     companion object {
         const val DAMAGE_AREA_HEIGHT = 1f
         private const val DAMAGE_PER_SECOND = 25f
-        private const val DEATH_EXPLOSION_DURATION = 0.9f
+        private const val DEATH_EXPLOSION_DURATION = 0.5f
     }
 }
