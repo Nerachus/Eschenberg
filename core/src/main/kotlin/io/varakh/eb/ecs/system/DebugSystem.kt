@@ -20,7 +20,8 @@ class DebugSystem : IntervalIteratingSystem(allOf(PlayerComponent::class).get(),
     override fun processEntity(entity: Entity) {
         val player = entity[PlayerComponent.mapper]!!
 
-        Gdx.graphics.setTitle("Player Health = ${player.health} - Player Shield = ${player.shield}")
+        Gdx.graphics.setTitle(
+                "Player Health = ${player.health} - Player Shield = ${player.shield} - Points = ${player.distance}")
 
         when {
             Gdx.input.isKeyPressed(Input.Keys.NUMPAD_1) -> {

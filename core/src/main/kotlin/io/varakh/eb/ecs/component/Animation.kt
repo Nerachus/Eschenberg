@@ -3,9 +3,9 @@ package io.varakh.eb.ecs.component
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.badlogic.gdx.utils.Array
 import com.badlogic.gdx.utils.Pool
 import ktx.ashley.mapperFor
+import ktx.collections.GdxArray
 
 
 const val DEFAULT_FRAME_DURATION = 1 / 20f
@@ -16,11 +16,15 @@ enum class AnimationType(val atlasKey: String,
     NONE(""),
     DARK_MATTER("dark_matter", speedRate = 2f),
     FIRE("fire"),
+    ORB_BLUE("orb_blue", speedRate = 0.5f),
+    ORB_YELLOW("orb_yellow", speedRate = 0.5f),
+    SHIELD("shield", speedRate = 0.5f),
+    LIFE("life"),
     PLAYER_IDLE("HeroKnight_Idle")
 }
 
 class Animation2D(val type: AnimationType,
-                  keyFrames: Array<out TextureRegion>,
+                  keyFrames: GdxArray<out TextureRegion>,
                   playMode: PlayMode = PlayMode.LOOP,
                   speedRate: Float = 1f)
     : Animation<TextureRegion>(DEFAULT_FRAME_DURATION / speedRate, keyFrames, playMode)

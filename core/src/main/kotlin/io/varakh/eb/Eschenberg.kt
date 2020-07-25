@@ -32,6 +32,7 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
             addSystem(PlayerInputSystem(viewport))
             addSystem(MoveSystem())
             addSystem((DamageSystem()))
+            addSystem(PowerUpSystem())
             addSystem(PlayerAnimationSystem(
                     regionUp = graphicsAtlas.findRegion("HeroKnight_Idle", 0),
                     regionRight = graphicsAtlas.findRegion("HeroKnight_Idle", 3),
