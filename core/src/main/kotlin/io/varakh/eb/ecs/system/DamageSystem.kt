@@ -3,7 +3,7 @@ package io.varakh.eb.ecs.system
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
 import io.varakh.eb.ecs.component.PlayerComponent
-import io.varakh.eb.ecs.component.RemovedComponent
+import io.varakh.eb.ecs.component.RemoveComponent
 import io.varakh.eb.ecs.component.TransformComponent
 import ktx.ashley.addComponent
 import ktx.ashley.allOf
@@ -15,7 +15,7 @@ import java.lang.Float.max
 private val log = logger<DamageSystem>()
 
 class DamageSystem : IteratingSystem(
-        allOf(PlayerComponent::class, TransformComponent::class).exclude(RemovedComponent::class).get()) {
+        allOf(PlayerComponent::class, TransformComponent::class).exclude(RemoveComponent::class).get()) {
 
     private var accumulator = 0f
 
@@ -33,7 +33,7 @@ class DamageSystem : IteratingSystem(
             if (damage <= 0) return
         }
         player.health = max(0f, player.health - damage)
-        if (player.health <= 0f) entity.addComponent<RemovedComponent>(engine) {
+        if (player.health <= 0f) entity.addComponent<RemoveComponent>(engine) {
             delay = DEATH_EXPLOSION_DURATION
         }
     }

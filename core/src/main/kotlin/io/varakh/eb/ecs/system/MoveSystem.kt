@@ -14,7 +14,7 @@ import java.lang.Float.max
 import java.lang.Float.min
 
 class MoveSystem : IteratingSystem(
-        allOf(TransformComponent::class, MoveComponent::class).exclude(RemovedComponent::class).get()) {
+        allOf(TransformComponent::class, MoveComponent::class).exclude(RemoveComponent::class).get()) {
 
     private var accumulator = 0f
 

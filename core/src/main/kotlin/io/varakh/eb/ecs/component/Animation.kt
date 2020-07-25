@@ -15,6 +15,7 @@ enum class AnimationType(val atlasKey: String,
                          val speedRate: Float = 1f) {
     NONE(""),
     DARK_MATTER("dark_matter", speedRate = 2f),
+    FIRE("fire"),
     PLAYER_IDLE("HeroKnight_Idle")
 }
 
