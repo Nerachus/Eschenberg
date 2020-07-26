@@ -37,7 +37,7 @@ class DamageSystem : IteratingSystem(
         }
         player.health = max(0f, player.health - damage)
         if (player.health <= 0f) {
-            deathEventManager.dispatchEvent(PlayerDeathEvent(player.distance))
+            deathEventManager.dispatchEvent(PlayerDeathEvent(player.points))
             entity.addComponent<RemoveComponent>(engine) {
                 delay = DEATH_EXPLOSION_DURATION
             }

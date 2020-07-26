@@ -8,12 +8,12 @@ class PlayerComponent : Component, Pool.Poolable {
 
     var health = MAX_HEALTH
     var shield = 0f
-    var distance = 0f
+    var points = 0f
 
     override fun reset() {
         health = MAX_HEALTH
         shield = 0f
-        distance = 0f
+        points = 0f
     }
 
     companion object {

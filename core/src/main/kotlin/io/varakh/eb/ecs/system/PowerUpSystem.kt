@@ -90,21 +90,15 @@ class PowerUpSystem : IteratingSystem(allOf(PowerUpComponent::class, TransformCo
     }
 
     private fun collectPowerUp(player: Entity, powerUp: Entity) {
-        val powerUpComp = powerUp[PowerUpComponent.mapper]!!
         val playerComp = player[PlayerComponent.mapper]!!
+        val powerUpType = powerUp[PowerUpComponent.mapper]!!.type
 
-        log.debug { "$player collected power up of type ${powerUpComp.type}" }
-        when (powerUpComp.type) {
-            PowerUpType.BOOST_S -> playerComp.distance += BOOST_S_POINTS
-            PowerUpType.BOOST_L -> playerComp.distance += BOOST_L_POINTS
-            PowerUpType.LIFE -> playerComp.health =
-                    min(playerComp.health + HEALTH_GAIN, PlayerComponent.MAX_HEALTH)
-            PowerUpType.SHIELD -> playerComp.shield =
-                    min(playerComp.shield + SHIELD_GAIN, PlayerComponent.MAX_SHIELD)
-            PowerUpType.NONE -> throw IllegalArgumentException("Player cannot collect NONE type power up!")
-        }
+        log.debug { "$player collected power up of type $powerUpType" }
+        playerComp.points += powerUpType.pointsGain
+        playerComp.health = min(playerComp.health + powerUpType.healthGain, PlayerComponent.MAX_HEALTH)
+        playerComp.shield = min(playerComp.shield + powerUpType.shieldGain, PlayerComponent.MAX_SHIELD)
 
-        powerUpEventManager.dispatchEvent(CollectPowerUpEvent(player, powerUpComp.type))
+        powerUpEventManager.dispatchEvent(CollectPowerUpEvent(player, powerUpType))
         powerUp.addComponent<RemoveComponent>(engine)
     }
 
@@ -112,9 +106,5 @@ class PowerUpSystem : IteratingSystem(allOf(PowerUpComponent::class, TransformCo
         const val MAX_SPAWN_INTERVAL = 1.5f
         const val MIN_SPAWN_INTERVAL = 0.9f
         const val POWER_UP_SPEED = -2.75f
-        const val BOOST_S_POINTS = 3f
-        const val BOOST_L_POINTS = 5f
-        const val HEALTH_GAIN = 25f
-        const val SHIELD_GAIN = 25f
     }
 }
