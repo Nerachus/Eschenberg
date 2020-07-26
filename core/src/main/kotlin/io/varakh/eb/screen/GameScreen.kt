@@ -8,7 +8,7 @@ import io.varakh.eb.ecs.component.*
 import io.varakh.eb.ecs.system.DamageSystem
 import io.varakh.eb.event.GameEventListener
 import io.varakh.eb.event.GameEventManagers
-import io.varakh.eb.event.GameEventPlayerDeath
+import io.varakh.eb.event.PlayerDeathEvent
 import ktx.ashley.entity
 import ktx.ashley.with
 import ktx.log.debug
@@ -18,9 +18,9 @@ import kotlin.math.min
 private val log = logger<GameScreen>()
 private const val MAX_FRAME_RATE = 1 / 100f
 
-class GameScreen(game: Eschenberg) : EschenbergScreen(game), GameEventListener<GameEventPlayerDeath> {
+class GameScreen(game: Eschenberg) : EschenbergScreen(game), GameEventListener<PlayerDeathEvent> {
 
-    private val playerDeathManager = GameEventManagers[GameEventPlayerDeath::class]
+    private val playerDeathManager = GameEventManagers[PlayerDeathEvent::class]
 
     override fun show() {
         log.debug { "Game screen is shown." }
@@ -42,7 +42,7 @@ class GameScreen(game: Eschenberg) : EschenbergScreen(game), GameEventListener<G
         engine.update(min(delta, MAX_FRAME_RATE))
     }
 
-    override fun onEvent(event: GameEventPlayerDeath) {
+    override fun onEvent(event: PlayerDeathEvent) {
         spawnPlayer()
     }
 

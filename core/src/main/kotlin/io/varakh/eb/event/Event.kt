@@ -9,11 +9,11 @@ interface GameEventListener<T : GameEvent> {
     fun onEvent(event: T)
 }
 
-data class GameEventPlayerDeath(val distance: Float = 0f) : GameEvent() {
+data class PlayerDeathEvent(val distance: Float = 0f) : GameEvent() {
     override fun toString() = "GameEventPlayerDeath(distance=$distance"
 }
 
-data class GameEventCollectPowerUp(val player: Entity,
-                                   val type: PowerUpType) : GameEvent() {
+data class CollectPowerUpEvent(val player: Entity,
+                               val type: PowerUpType) : GameEvent() {
     override fun toString() = "GameEventCollectPowerUp(player=$player, type=$type"
 }

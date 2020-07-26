@@ -12,7 +12,7 @@ import io.varakh.eb.ecs.component.GraphicComponent
 import io.varakh.eb.ecs.component.PowerUpType
 import io.varakh.eb.ecs.component.RemoveComponent
 import io.varakh.eb.ecs.component.TransformComponent
-import io.varakh.eb.event.GameEventCollectPowerUp
+import io.varakh.eb.event.CollectPowerUpEvent
 import io.varakh.eb.event.GameEventListener
 import io.varakh.eb.event.GameEventManagers
 import ktx.ashley.allOf
@@ -28,7 +28,7 @@ class RenderSystem(private val batch: SpriteBatch,
                    private val gameViewport: Viewport,
                    private val pixelViewport: Viewport,
                    backgroundTexture: Texture)
-    : GameEventListener<GameEventCollectPowerUp>, SortedIteratingSystem(
+    : GameEventListener<CollectPowerUpEvent>, SortedIteratingSystem(
         allOf(TransformComponent::class, GraphicComponent::class).exclude(RemoveComponent::class).get(),
         compareBy { it[TransformComponent.mapper] }) {
 
@@ -37,7 +37,7 @@ class RenderSystem(private val batch: SpriteBatch,
     })
 
     private val backgroundScrollSpeed = Vector2(0.02f, BACKGROUND_Y_SCROLL)
-    private val powerUpEventManager = GameEventManagers[GameEventCollectPowerUp::class]
+    private val powerUpEventManager = GameEventManagers[CollectPowerUpEvent::class]
 
     override fun addedToEngine(engine: Engine) {
         super.addedToEngine(engine)
@@ -84,7 +84,7 @@ class RenderSystem(private val batch: SpriteBatch,
         }
     }
 
-    override fun onEvent(event: GameEventCollectPowerUp) {
+    override fun onEvent(event: CollectPowerUpEvent) {
         when (event.type) {
             PowerUpType.BOOST_S -> backgroundScrollSpeed.y -= 0.1f
             PowerUpType.BOOST_L -> backgroundScrollSpeed.y -= 0.2f
