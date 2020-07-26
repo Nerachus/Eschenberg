@@ -7,6 +7,8 @@ import com.badlogic.gdx.math.Rectangle
 import io.varakh.eb.WORLD_HEIGHT
 import io.varakh.eb.WORLD_WIDTH
 import io.varakh.eb.ecs.component.*
+import io.varakh.eb.event.GameEventCollectPowerUp
+import io.varakh.eb.event.GameEventManagers
 import ktx.ashley.*
 import ktx.collections.GdxArray
 import ktx.collections.gdxArrayOf
@@ -39,6 +41,7 @@ class PowerUpSystem : IteratingSystem(allOf(PowerUpComponent::class, TransformCo
     )
     private var spawnTime = 0f
     private val currentSpawnPattern = GdxArray<PowerUpType>()
+    private val powerUpEventManager = GameEventManagers[GameEventCollectPowerUp::class]
 
     override fun update(deltaTime: Float) {
         super.update(deltaTime)
@@ -101,6 +104,7 @@ class PowerUpSystem : IteratingSystem(allOf(PowerUpComponent::class, TransformCo
             PowerUpType.NONE -> throw IllegalArgumentException("Player cannot collect NONE type power up!")
         }
 
+        powerUpEventManager.dispatchEvent(GameEventCollectPowerUp(player, powerUpComp.type))
         powerUp.addComponent<RemoveComponent>(engine)
     }
 

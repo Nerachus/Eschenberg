@@ -5,6 +5,8 @@ import com.badlogic.ashley.systems.IteratingSystem
 import io.varakh.eb.ecs.component.PlayerComponent
 import io.varakh.eb.ecs.component.RemoveComponent
 import io.varakh.eb.ecs.component.TransformComponent
+import io.varakh.eb.event.GameEventManagers
+import io.varakh.eb.event.GameEventPlayerDeath
 import ktx.ashley.addComponent
 import ktx.ashley.allOf
 import ktx.ashley.exclude
@@ -17,6 +19,7 @@ private val log = logger<DamageSystem>()
 class DamageSystem : IteratingSystem(
         allOf(PlayerComponent::class, TransformComponent::class).exclude(RemoveComponent::class).get()) {
 
+    private val deathEventManager = GameEventManagers[GameEventPlayerDeath::class]
     private var accumulator = 0f
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
@@ -33,8 +36,11 @@ class DamageSystem : IteratingSystem(
             if (damage <= 0) return
         }
         player.health = max(0f, player.health - damage)
-        if (player.health <= 0f) entity.addComponent<RemoveComponent>(engine) {
-            delay = DEATH_EXPLOSION_DURATION
+        if (player.health <= 0f) {
+            deathEventManager.dispatchEvent(GameEventPlayerDeath(player.distance))
+            entity.addComponent<RemoveComponent>(engine) {
+                delay = DEATH_EXPLOSION_DURATION
+            }
         }
     }
 
