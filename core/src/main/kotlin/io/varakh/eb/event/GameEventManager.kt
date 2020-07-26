@@ -1,7 +1,11 @@
 package io.varakh.eb.event
 
 import ktx.collections.GdxSet
+import ktx.log.debug
+import ktx.log.logger
 import kotlin.reflect.KClass
+
+private val log = logger<GameEventManager<*>>()
 
 class GameEventManager<T : GameEvent>() {
     @Suppress("UNUSED_PARAMETER")
@@ -18,6 +22,7 @@ class GameEventManager<T : GameEvent>() {
     }
 
     fun dispatchEvent(event: T) {
+        log.debug { "Dispatching event $event" }
         listeners.forEach { it.onEvent(event) }
     }
 }
