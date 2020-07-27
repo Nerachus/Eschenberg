@@ -27,7 +27,7 @@ class GameEventManager<T : GameEvent>(type: KClass<T>) {
         val event = eventPool.obtain()
         event.block()
         log.debug { "Dispatching event $event" }
-        listeners.forEach { it.onEvent(event) }.apply { }
+        listeners.forEach { it.onEvent(event) }
         eventPool.free(event)
     }
 }
