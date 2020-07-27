@@ -3,6 +3,7 @@ package io.varakh.eb.event
 
 import com.badlogic.gdx.utils.Pool
 import com.badlogic.gdx.utils.Pools
+import io.varakh.eb.util.pooled
 import ktx.collections.GdxSet
 import ktx.log.debug
 import ktx.log.logger
@@ -24,10 +25,10 @@ class GameEventManager<T : GameEvent>(type: KClass<T>) {
     }
 
     inline fun dispatchEvent(block: T.() -> Unit) {
-        val event = eventPool.obtain()
-        event.block()
-        log.debug { "Dispatching event $event" }
-        listeners.forEach { it.onEvent(event) }
-        eventPool.free(event)
+        eventPool.pooled { event ->
+            event.block()
+            log.debug { "Dispatching event $event" }
+            listeners.forEach { it.onEvent(event) }
+        }
     }
 }

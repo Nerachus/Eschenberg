@@ -16,8 +16,6 @@ data class PlayerDeathEvent(var points: Float = 0f) : GameEvent() {
     override fun reset() {
         points = 0f
     }
-
-    override fun toString() = "GameEventPlayerDeath(distance=$points)"
 }
 
 data class CollectPowerUpEvent(var player: Entity = NonEntity,
@@ -26,8 +24,6 @@ data class CollectPowerUpEvent(var player: Entity = NonEntity,
         player = NonEntity
         type = PowerUpType.NONE
     }
-
-    override fun toString() = "GameEventCollectPowerUp(player=$player, type=$type)"
 }
 
 data class PlayerDamageEvent(var player: Entity = NonEntity,
@@ -36,6 +32,4 @@ data class PlayerDamageEvent(var player: Entity = NonEntity,
         player = NonEntity
         health = 0f
     }
-
-    override fun toString() = "PlayerDamageEvent(player=$player, health=$health)"
 }
