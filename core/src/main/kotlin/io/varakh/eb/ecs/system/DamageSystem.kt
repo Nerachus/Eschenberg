@@ -6,6 +6,7 @@ import io.varakh.eb.ecs.component.PlayerComponent
 import io.varakh.eb.ecs.component.RemoveComponent
 import io.varakh.eb.ecs.component.TransformComponent
 import io.varakh.eb.event.GameEventManagers
+import io.varakh.eb.event.PlayerDamageEvent
 import io.varakh.eb.event.PlayerDeathEvent
 import ktx.ashley.addComponent
 import ktx.ashley.allOf
@@ -20,6 +21,7 @@ class DamageSystem : IteratingSystem(
         allOf(PlayerComponent::class, TransformComponent::class).exclude(RemoveComponent::class).get()) {
 
     private val deathEventManager = GameEventManagers[PlayerDeathEvent::class]
+    private val playerDamageManager = GameEventManagers[PlayerDamageEvent::class]
     private var accumulator = 0f
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
@@ -36,6 +38,8 @@ class DamageSystem : IteratingSystem(
             if (damage <= 0) return
         }
         player.health = max(0f, player.health - damage)
+        playerDamageManager.dispatchEvent(PlayerDamageEvent(entity, player.health))
+
         if (player.health <= 0f) {
             deathEventManager.dispatchEvent(PlayerDeathEvent(player.points))
             entity.addComponent<RemoveComponent>(engine) {

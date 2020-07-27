@@ -46,6 +46,7 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
             ))
             addSystem(AttachSystem())
             addSystem(AnimationSystem(graphicsAtlas))
+            addSystem(CameraShakeSystem(gameViewport.camera))
             addSystem(RenderSystem(batch, gameViewport, pixelViewport, backgroundTexture))
             addSystem(RemoveSystem())
             addSystem(DebugSystem())

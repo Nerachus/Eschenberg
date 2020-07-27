@@ -93,7 +93,6 @@ class PowerUpSystem : IteratingSystem(allOf(PowerUpComponent::class, TransformCo
         val playerComp = player[PlayerComponent.mapper]!!
         val powerUpType = powerUp[PowerUpComponent.mapper]!!.type
 
-        log.debug { "$player collected power up of type $powerUpType" }
         playerComp.points += powerUpType.pointsGain
         playerComp.health = min(playerComp.health + powerUpType.healthGain, PlayerComponent.MAX_HEALTH)
         playerComp.shield = min(playerComp.shield + powerUpType.shieldGain, PlayerComponent.MAX_SHIELD)
