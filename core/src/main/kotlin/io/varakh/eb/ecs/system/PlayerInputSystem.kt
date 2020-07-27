@@ -11,10 +11,7 @@ import io.varakh.eb.ecs.component.PlayerComponent
 import io.varakh.eb.ecs.component.TransformComponent
 import ktx.ashley.allOf
 import ktx.ashley.get
-import ktx.log.logger
 import kotlin.math.abs
-
-private val log = logger<PlayerInputSystem>()
 
 class PlayerInputSystem(private val viewport: Viewport)
     : IteratingSystem(

@@ -19,10 +19,7 @@ import ktx.ashley.allOf
 import ktx.ashley.exclude
 import ktx.ashley.get
 import ktx.graphics.use
-import ktx.log.logger
 import kotlin.math.min
-
-private val log = logger<RenderSystem>()
 
 class RenderSystem(private val batch: SpriteBatch,
                    private val gameViewport: Viewport,

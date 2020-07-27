@@ -7,9 +7,6 @@ import com.badlogic.gdx.Input
 import io.varakh.eb.ecs.component.PlayerComponent
 import ktx.ashley.allOf
 import ktx.ashley.get
-import ktx.log.logger
-
-private val log = logger<DebugSystem>()
 
 class DebugSystem : IntervalIteratingSystem(allOf(PlayerComponent::class).get(), WINDOW_INFO_UPDATE_RATE) {
 

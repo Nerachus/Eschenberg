@@ -89,15 +89,18 @@ class PowerUpSystem : IteratingSystem(allOf(PowerUpComponent::class, TransformCo
         }
     }
 
-    private fun collectPowerUp(player: Entity, powerUp: Entity) {
-        val playerComp = player[PlayerComponent.mapper]!!
+    private fun collectPowerUp(entity: Entity, powerUp: Entity) {
+        val playerComp = entity[PlayerComponent.mapper]!!
         val powerUpType = powerUp[PowerUpComponent.mapper]!!.type
 
         playerComp.points += powerUpType.pointsGain
         playerComp.health = min(playerComp.health + powerUpType.healthGain, PlayerComponent.MAX_HEALTH)
         playerComp.shield = min(playerComp.shield + powerUpType.shieldGain, PlayerComponent.MAX_SHIELD)
 
-        powerUpEventManager.dispatchEvent(CollectPowerUpEvent(player, powerUpType))
+        powerUpEventManager.dispatchEvent {
+            player = entity
+            type = powerUpType
+        }
         powerUp.addComponent<RemoveComponent>(engine)
     }
 

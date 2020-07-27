@@ -12,36 +12,35 @@ import ktx.ashley.addComponent
 import ktx.ashley.allOf
 import ktx.ashley.exclude
 import ktx.ashley.get
-import ktx.log.logger
 import java.lang.Float.max
-
-private val log = logger<DamageSystem>()
 
 class DamageSystem : IteratingSystem(
         allOf(PlayerComponent::class, TransformComponent::class).exclude(RemoveComponent::class).get()) {
 
     private val deathEventManager = GameEventManagers[PlayerDeathEvent::class]
     private val playerDamageManager = GameEventManagers[PlayerDamageEvent::class]
-    private var accumulator = 0f
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val player = entity[PlayerComponent.mapper]!!
+        val playerComp = entity[PlayerComponent.mapper]!!
         val transform = entity[TransformComponent.mapper]!!
 
         if (transform.position.y > DAMAGE_AREA_HEIGHT) return
 
         var damage = DAMAGE_PER_SECOND * deltaTime
-        if (player.shield > 0f) {
-            val blockAmount = player.shield
-            player.shield = max(0f, player.shield - damage)
+        if (playerComp.shield > 0f) {
+            val blockAmount = playerComp.shield
+            playerComp.shield = max(0f, playerComp.shield - damage)
             damage -= blockAmount
             if (damage <= 0) return
         }
-        player.health = max(0f, player.health - damage)
-        playerDamageManager.dispatchEvent(PlayerDamageEvent(entity, player.health))
+        playerComp.health = max(0f, playerComp.health - damage)
+        playerDamageManager.dispatchEvent {
+            player = entity
+            health = playerComp.health
+        }
 
-        if (player.health <= 0f) {
-            deathEventManager.dispatchEvent(PlayerDeathEvent(player.points))
+        if (playerComp.health <= 0f) {
+            deathEventManager.dispatchEvent { points = playerComp.points }
             entity.addComponent<RemoveComponent>(engine) {
                 delay = DEATH_EXPLOSION_DURATION
             }
