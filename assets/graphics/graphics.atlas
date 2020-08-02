@@ -66,350 +66,350 @@ dark_matter
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 0
+  index: 56
 dark_matter
   rotate: false
   xy: 410, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 56
+  index: 49
 dark_matter
   rotate: false
   xy: 462, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 49
+  index: 13
 dark_matter
   rotate: false
   xy: 462, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 11
+  index: 30
 dark_matter
   rotate: false
   xy: 514, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 13
+  index: 31
 dark_matter
   rotate: false
   xy: 514, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 30
+  index: 32
 dark_matter
   rotate: false
   xy: 566, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 31
+  index: 33
 dark_matter
   rotate: false
   xy: 566, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 32
+  index: 34
 dark_matter
   rotate: false
   xy: 618, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 33
+  index: 55
 dark_matter
   rotate: false
   xy: 618, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 34
+  index: 36
 dark_matter
   rotate: false
   xy: 670, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 35
+  index: 37
 dark_matter
   rotate: false
   xy: 670, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 36
+  index: 38
 dark_matter
   rotate: false
   xy: 722, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 37
+  index: 2
 dark_matter
   rotate: false
   xy: 722, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 38
+  index: 46
 dark_matter
   rotate: false
   xy: 774, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 39
+  index: 47
 dark_matter
   rotate: false
   xy: 774, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 2
+  index: 40
 dark_matter
   rotate: false
   xy: 826, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 46
+  index: 41
 dark_matter
   rotate: false
   xy: 826, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 47
+  index: 42
 dark_matter
   rotate: false
   xy: 878, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 40
+  index: 43
 dark_matter
   rotate: false
   xy: 878, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 41
+  index: 0
 dark_matter
   rotate: false
   xy: 930, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 42
+  index: 1
 dark_matter
   rotate: false
   xy: 930, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 43
+  index: 58
 dark_matter
   rotate: false
   xy: 982, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 44
+  index: 3
 dark_matter
   rotate: false
   xy: 982, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 1
+  index: 4
 dark_matter
   rotate: false
   xy: 1034, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 57
+  index: 5
 dark_matter
   rotate: false
   xy: 1034, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 3
+  index: 6
 dark_matter
   rotate: false
   xy: 1086, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 4
+  index: 7
 dark_matter
   rotate: false
   xy: 1086, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 5
+  index: 8
 dark_matter
   rotate: false
   xy: 1138, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 6
+  index: 9
 dark_matter
   rotate: false
   xy: 1138, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 7
+  index: 19
 dark_matter
   rotate: false
   xy: 1190, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 8
+  index: 45
 dark_matter
   rotate: false
   xy: 1190, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 9
+  index: 59
 dark_matter
   rotate: false
   xy: 1242, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 45
+  index: 48
 dark_matter
   rotate: false
   xy: 1242, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 59
+  index: 50
 dark_matter
   rotate: false
   xy: 1294, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 58
+  index: 51
 dark_matter
   rotate: false
   xy: 1294, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 48
+  index: 52
 dark_matter
   rotate: false
   xy: 1346, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 50
+  index: 53
 dark_matter
   rotate: false
   xy: 1346, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 51
+  index: 10
 dark_matter
   rotate: false
   xy: 1398, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 52
+  index: 11
 dark_matter
   rotate: false
   xy: 1398, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 53
+  index: 12
 dark_matter
   rotate: false
   xy: 1450, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 10
+  index: 14
 dark_matter
   rotate: false
   xy: 1450, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 55
+  index: 15
 dark_matter
   rotate: false
   xy: 1502, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 12
+  index: 16
 dark_matter
   rotate: false
   xy: 1502, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 14
+  index: 17
 dark_matter
   rotate: false
   xy: 1554, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 15
+  index: 18
 dark_matter
   rotate: false
   xy: 1554, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 16
+  index: 44
 dark_matter
   rotate: false
   xy: 1606, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 18
+  index: 54
 dark_matter
   rotate: false
   xy: 1606, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 19
+  index: 35
 dark_matter
   rotate: false
   xy: 1658, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 54
+  index: 29
 dark_matter
   rotate: false
   xy: 1658, 22
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 17
+  index: 22
 dark_matter
   rotate: false
   xy: 1710, 74
@@ -430,7 +430,7 @@ dark_matter
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 22
+  index: 57
 dark_matter
   rotate: false
   xy: 1762, 22
@@ -479,17 +479,17 @@ dark_matter
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
-  index: 29
+  index: 39
 error
   rotate: false
-  xy: 1990, 116
+  xy: 32, 2
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 0
 fire
   rotate: false
-  xy: 22, 2
+  xy: 1970, 116
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -501,13 +501,6 @@ fire
   orig: 8, 8
   offset: 0, 0
   index: 1
-life
-  rotate: false
-  xy: 1970, 116
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: 0
 life
   rotate: false
   xy: 12, 2
@@ -524,11 +517,18 @@ life
   index: 2
 life
   rotate: false
-  xy: 32, 2
+  xy: 1970, 106
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 3
+life
+  rotate: false
+  xy: 1990, 116
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 0
 orb_blue
   rotate: false
   xy: 1970, 96
@@ -559,15 +559,15 @@ orb_yellow
   index: 1
 shield
   rotate: false
-  xy: 1970, 106
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: 0
-shield
-  rotate: false
   xy: 1980, 116
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: 1
+shield
+  rotate: false
+  xy: 22, 2
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: 0

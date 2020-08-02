@@ -5,20 +5,22 @@ import com.badlogic.gdx.Application.LOG_DEBUG
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Preferences
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.FitViewport
-import io.varakh.eb.asset.MusicAsset
-import io.varakh.eb.asset.ShaderProgramAsset
-import io.varakh.eb.asset.TextureAsset
-import io.varakh.eb.asset.TextureAtlasAsset
+import io.varakh.eb.asset.*
 import io.varakh.eb.audio.AudioService
 import io.varakh.eb.audio.DefaultAudioService
 import io.varakh.eb.ecs.system.*
 import io.varakh.eb.screen.EschenbergScreen
 import io.varakh.eb.screen.LoadingScreen
+import io.varakh.eb.ui.createSkin
+import kotlinx.coroutines.joinAll
+import kotlinx.coroutines.launch
 import ktx.app.KtxGame
 import ktx.assets.async.AssetStorage
 import ktx.async.KtxAsync
 import ktx.async.newAsyncContext
+import ktx.collections.gdxArrayOf
 import ktx.log.debug
 import ktx.log.logger
 
@@ -35,12 +37,17 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
     val batch by lazy { SpriteBatch() }
     val gameViewport = FitViewport(WORLD_WIDTH, WORLD_HEIGHT)
     val pixelViewport = FitViewport(BACKGROUND_WIDTH, BACKGROUND_HEIGHT)
+    val preferences: Preferences by lazy { Gdx.app.getPreferences("Eschenberg") }
+    val audioService: AudioService by lazy { DefaultAudioService(assets) }
+    val stage: Stage by lazy {
+        Stage(pixelViewport, batch).apply {
+            Gdx.input.inputProcessor = this
+        }
+    }
     val assets by lazy {
         KtxAsync.initiate()
         AssetStorage(newAsyncContext(2, "AssetStorage-Thread"))
     }
-    val audioService: AudioService by lazy { DefaultAudioService(assets) }
-    val preferences: Preferences by lazy { Gdx.app.getPreferences("Eschenberg") }
 
     val engine: PooledEngine by lazy {
         PooledEngine().apply {
@@ -69,8 +76,19 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
     override fun create() {
         Gdx.app.logLevel = LOG_DEBUG
         log.debug { "Create game instance" }
-        addScreen(LoadingScreen(this))
-        setScreen<LoadingScreen>()
+
+        val assetRefs = gdxArrayOf(
+                TextureAtlasAsset.values().filter { it.isSkinAtlas }.map { assets.loadAsync(it.descriptor) },
+                BitmapFontAsset.values().map { assets.loadAsync(it.descriptor) }
+        ).flatten()
+
+        KtxAsync.launch {
+            assetRefs.joinAll()
+            createSkin(assets)
+
+            addScreen(LoadingScreen(this@Eschenberg))
+            setScreen<LoadingScreen>()
+        }
     }
 
     override fun dispose() {
@@ -81,5 +99,6 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
         }
         batch.dispose()
         assets.dispose()
+        stage.dispose()
     }
 }
