@@ -9,8 +9,6 @@ import ktx.log.debug
 import ktx.log.logger
 import kotlin.reflect.KClass
 
-val log = logger<GameEventManager<*>>()
-
 class GameEventManager<T : GameEvent>(type: KClass<T>) {
 
     val listeners = GdxSet<GameEventListener<T>>()
@@ -30,5 +28,9 @@ class GameEventManager<T : GameEvent>(type: KClass<T>) {
             log.debug { "Dispatching event $event" }
             listeners.forEach { it.onEvent(event) }
         }
+    }
+
+    companion object {
+        val log = logger<GameEventManager<*>>()
     }
 }

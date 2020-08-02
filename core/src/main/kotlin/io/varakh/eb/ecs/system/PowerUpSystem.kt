@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.MathUtils.random
 import com.badlogic.gdx.math.Rectangle
 import io.varakh.eb.WORLD_HEIGHT
 import io.varakh.eb.WORLD_WIDTH
+import io.varakh.eb.audio.AudioService
 import io.varakh.eb.ecs.component.*
 import io.varakh.eb.event.CollectPowerUpEvent
 import io.varakh.eb.event.GameEventManagers
@@ -27,7 +28,8 @@ private class SpawnPattern(
         val types: GdxArray<PowerUpType> = gdxArrayOf(type1, type2, type3, type4, type5)
 )
 
-class PowerUpSystem : IteratingSystem(allOf(PowerUpComponent::class, TransformComponent::class)
+class PowerUpSystem(private val audioService: AudioService)
+    : IteratingSystem(allOf(PowerUpComponent::class, TransformComponent::class)
         .exclude(RemoveComponent::class.java).get()) {
 
     private val playerBoundsRect = Rectangle()
@@ -96,6 +98,8 @@ class PowerUpSystem : IteratingSystem(allOf(PowerUpComponent::class, TransformCo
         playerComp.points += powerUpType.pointsGain
         playerComp.health = min(playerComp.health + powerUpType.healthGain, PlayerComponent.MAX_HEALTH)
         playerComp.shield = min(playerComp.shield + powerUpType.shieldGain, PlayerComponent.MAX_SHIELD)
+
+        audioService.play(powerUpType.soundAsset)
 
         powerUpEventManager.dispatchEvent {
             player = entity

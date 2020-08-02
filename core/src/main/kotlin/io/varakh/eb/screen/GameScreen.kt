@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Entity
 import io.varakh.eb.Eschenberg
 import io.varakh.eb.UNIT_SCALE
 import io.varakh.eb.WORLD_WIDTH
+import io.varakh.eb.asset.MusicAsset
 import io.varakh.eb.ecs.component.*
 import io.varakh.eb.ecs.system.DamageSystem
 import io.varakh.eb.event.GameEventListener
@@ -23,10 +24,13 @@ class GameScreen(game: Eschenberg,
                  private val engine: Engine = game.engine) : EschenbergScreen(game), GameEventListener<PlayerDeathEvent> {
 
     private val playerDeathManager = GameEventManagers[PlayerDeathEvent::class]
+    var logRenderCalls = false
 
     override fun show() {
         log.debug { "Game screen is shown." }
         playerDeathManager.addEventListener(this)
+
+        audioService.play(MusicAsset.GAME)
         spawnPlayer()
         engine.entity {
             with<TransformComponent> { size.set(WORLD_WIDTH, DamageSystem.DAMAGE_AREA_HEIGHT) }
@@ -41,7 +45,10 @@ class GameScreen(game: Eschenberg,
     }
 
     override fun render(delta: Float) {
+        game.batch.renderCalls = 0
         engine.update(min(delta, MAX_FRAME_RATE))
+        audioService.update()
+        if (logRenderCalls) log.debug { "Render calls: ${game.batch.renderCalls}" }
     }
 
     override fun onEvent(event: PlayerDeathEvent) {

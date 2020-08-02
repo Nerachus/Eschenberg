@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.FitViewport
 import io.varakh.eb.asset.TextureAsset
 import io.varakh.eb.asset.TextureAtlasAsset
+import io.varakh.eb.audio.AudioService
+import io.varakh.eb.audio.DefaultAudioService
 import io.varakh.eb.ecs.system.*
 import io.varakh.eb.screen.EschenbergScreen
 import io.varakh.eb.screen.LoadingScreen
@@ -33,6 +35,7 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
         KtxAsync.initiate()
         AssetStorage()
     }
+    val audioService: AudioService by lazy { DefaultAudioService(assets) }
 
     val engine: PooledEngine by lazy {
         PooledEngine().apply {
@@ -40,7 +43,7 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
             addSystem(PlayerInputSystem(gameViewport))
             addSystem(MoveSystem())
             addSystem(DamageSystem())
-            addSystem(PowerUpSystem())
+            addSystem(PowerUpSystem(audioService))
             addSystem(PlayerAnimationSystem(
                     regionUp = atlas.findRegion("HeroKnight_Idle", 0),
                     regionRight = atlas.findRegion("HeroKnight_Idle", 3),
