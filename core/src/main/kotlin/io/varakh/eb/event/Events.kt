@@ -12,9 +12,9 @@ interface GameEventListener<T : GameEvent> {
     fun onEvent(event: T)
 }
 
-data class PlayerDeathEvent(var points: Float = 0f) : GameEvent() {
+data class PlayerDeathEvent(var points: Int = 0) : GameEvent() {
     override fun reset() {
-        points = 0f
+        points = 0
     }
 }
 

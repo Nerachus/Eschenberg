@@ -5,8 +5,8 @@ import com.badlogic.gdx.utils.Pool
 import io.varakh.eb.asset.SoundAsset
 import ktx.ashley.mapperFor
 
-private const val BOOST_S_POINTS = 3f
-private const val BOOST_L_POINTS = 5f
+private const val BOOST_S_POINTS = 3
+private const val BOOST_L_POINTS = 5
 private const val HEALTH_GAIN = 25f
 private const val SHIELD_GAIN = 25f
 
@@ -14,7 +14,7 @@ enum class PowerUpType(val animationType: AnimationType,
                        val soundAsset: SoundAsset,
                        val healthGain: Float = 0f,
                        val shieldGain: Float = 0f,
-                       val pointsGain: Float = 0f) {
+                       val pointsGain: Int = 0) {
     NONE(AnimationType.NONE, SoundAsset.BOOST_L),
     BOOST_S(AnimationType.ORB_BLUE, SoundAsset.BOOST_S, pointsGain = BOOST_S_POINTS),
     BOOST_L(AnimationType.ORB_YELLOW, SoundAsset.BOOST_L, pointsGain = BOOST_L_POINTS),

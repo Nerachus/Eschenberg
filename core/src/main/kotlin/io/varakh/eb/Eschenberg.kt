@@ -3,8 +3,10 @@ package io.varakh.eb
 import com.badlogic.ashley.core.PooledEngine
 import com.badlogic.gdx.Application.LOG_DEBUG
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Preferences
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.FitViewport
+import io.varakh.eb.asset.MusicAsset
 import io.varakh.eb.asset.TextureAsset
 import io.varakh.eb.asset.TextureAtlasAsset
 import io.varakh.eb.audio.AudioService
@@ -15,6 +17,7 @@ import io.varakh.eb.screen.LoadingScreen
 import ktx.app.KtxGame
 import ktx.assets.async.AssetStorage
 import ktx.async.KtxAsync
+import ktx.async.newAsyncContext
 import ktx.log.debug
 import ktx.log.logger
 
@@ -33,9 +36,10 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
     val pixelViewport = FitViewport(BACKGROUND_WIDTH, BACKGROUND_HEIGHT)
     val assets by lazy {
         KtxAsync.initiate()
-        AssetStorage()
+        AssetStorage(newAsyncContext(2, "AssetStorage-Thread"))
     }
     val audioService: AudioService by lazy { DefaultAudioService(assets) }
+    val preferences: Preferences by lazy { Gdx.app.getPreferences("Eschenberg") }
 
     val engine: PooledEngine by lazy {
         PooledEngine().apply {
@@ -69,6 +73,9 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
     override fun dispose() {
         super.dispose()
         log.debug { "Sprites in batch: ${batch.maxSpritesInBatch}" }
+        MusicAsset.values().forEach {
+            log.debug { "Refcount $it: ${assets.getReferenceCount(it.descriptor)}" }
+        }
         batch.dispose()
         assets.dispose()
     }

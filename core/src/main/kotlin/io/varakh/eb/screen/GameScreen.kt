@@ -11,10 +11,14 @@ import io.varakh.eb.ecs.system.DamageSystem
 import io.varakh.eb.event.GameEventListener
 import io.varakh.eb.event.GameEventManagers
 import io.varakh.eb.event.PlayerDeathEvent
+import io.varakh.eb.preferences.Prefs
+import io.varakh.eb.preferences.get
 import ktx.ashley.entity
 import ktx.ashley.with
 import ktx.log.debug
 import ktx.log.logger
+import ktx.preferences.flush
+import ktx.preferences.set
 import kotlin.math.min
 
 private val log = logger<GameScreen>()
@@ -28,6 +32,7 @@ class GameScreen(game: Eschenberg,
 
     override fun show() {
         log.debug { "Game screen is shown." }
+        log.debug { "Highscore: " + preferences[Prefs.HIGHSCORE, 0f] }
         playerDeathManager.addEventListener(this)
 
         audioService.play(MusicAsset.GAME)
@@ -52,6 +57,10 @@ class GameScreen(game: Eschenberg,
     }
 
     override fun onEvent(event: PlayerDeathEvent) {
+        log.debug { "Player died with ${event.points} points" }
+        if (event.points > preferences[Prefs.HIGHSCORE] ?: 0f) {
+            preferences.flush { this["highscore"] = event.points }
+        }
         spawnPlayer()
     }
 
