@@ -7,6 +7,7 @@ import com.badlogic.gdx.Preferences
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.FitViewport
 import io.varakh.eb.asset.MusicAsset
+import io.varakh.eb.asset.ShaderProgramAsset
 import io.varakh.eb.asset.TextureAsset
 import io.varakh.eb.asset.TextureAtlasAsset
 import io.varakh.eb.audio.AudioService
@@ -57,7 +58,9 @@ class Eschenberg : KtxGame<EschenbergScreen>() {
             addSystem(AttachSystem())
             addSystem(AnimationSystem(atlas))
             addSystem(CameraShakeSystem(gameViewport.camera))
-            addSystem(RenderSystem(batch, gameViewport, pixelViewport, assets[TextureAsset.BACKGROUND.descriptor]))
+            addSystem(RenderSystem(batch, gameViewport, pixelViewport,
+                    assets[ShaderProgramAsset.OUTLINE.descriptor],
+                    assets[TextureAsset.BACKGROUND.descriptor]))
             addSystem(RemoveSystem())
             addSystem(DebugSystem())
         }

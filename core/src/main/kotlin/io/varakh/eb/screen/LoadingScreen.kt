@@ -1,6 +1,7 @@
 package io.varakh.eb.screen
 
 import io.varakh.eb.Eschenberg
+import io.varakh.eb.asset.ShaderProgramAsset
 import io.varakh.eb.asset.SoundAsset
 import io.varakh.eb.asset.TextureAsset
 import io.varakh.eb.asset.TextureAtlasAsset
@@ -20,7 +21,8 @@ class LoadingScreen(game: Eschenberg) : EschenbergScreen(game) {
         val assetRefs = gdxArrayOf(
                 TextureAsset.values().map { assets.loadAsync(it.descriptor) },
                 TextureAtlasAsset.values().map { assets.loadAsync(it.descriptor) },
-                SoundAsset.values().map { assets.loadAsync(it.descriptor) }
+                SoundAsset.values().map { assets.loadAsync(it.descriptor) },
+                ShaderProgramAsset.values().map { assets.loadAsync(it.descriptor) }
         ).flatten()
 
         KtxAsync.launch {
