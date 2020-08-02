@@ -1,5 +1,6 @@
 package io.varakh.eb.screen
 
+import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import io.varakh.eb.Eschenberg
 import io.varakh.eb.UNIT_SCALE
@@ -18,7 +19,8 @@ import kotlin.math.min
 private val log = logger<GameScreen>()
 private const val MAX_FRAME_RATE = 1 / 100f
 
-class GameScreen(game: Eschenberg) : EschenbergScreen(game), GameEventListener<PlayerDeathEvent> {
+class GameScreen(game: Eschenberg,
+                 private val engine: Engine = game.engine) : EschenbergScreen(game), GameEventListener<PlayerDeathEvent> {
 
     private val playerDeathManager = GameEventManagers[PlayerDeathEvent::class]
 
