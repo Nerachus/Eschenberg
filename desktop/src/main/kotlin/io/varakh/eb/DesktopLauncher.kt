@@ -1,8 +1,7 @@
-package io.varakh.eb.desktop
+package io.varakh.eb
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
-import io.varakh.eb.Eschenberg
 
 fun main() {
     Lwjgl3Application(Eschenberg(), Lwjgl3ApplicationConfiguration().apply {

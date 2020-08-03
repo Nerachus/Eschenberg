@@ -102,6 +102,6 @@ class LoadingScreen(game: Eschenberg) : EschenbergScreen(game) {
                 pack()
             }
         }
-        stage.isDebugAll = true
+        stage.isDebugAll = false
     }
 }
