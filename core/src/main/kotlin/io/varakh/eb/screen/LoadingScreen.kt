@@ -1,6 +1,7 @@
 package io.varakh.eb.screen
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.maps.tiled.TmxMapLoader
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.*
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Label
@@ -24,6 +25,8 @@ import ktx.scene2d.*
 private val log = logger<LoadingScreen>()
 
 class LoadingScreen(game: Eschenberg) : EschenbergScreen(game) {
+
+    private val mapLoader = TmxMapLoader()
 
     private lateinit var progressBar: Image
     private lateinit var touchToBeginLabel: Label
@@ -53,7 +56,7 @@ class LoadingScreen(game: Eschenberg) : EschenbergScreen(game) {
 
     override fun render(delta: Float) {
         if (assets.progress.isFinished && Gdx.input.justTouched() && game.containsScreen<GameScreen>()) {
-            game.setScreen<GameScreen>()
+            game.setScreen<MapScreen>()
             dispose()
         }
 
@@ -67,7 +70,7 @@ class LoadingScreen(game: Eschenberg) : EschenbergScreen(game) {
 
     private fun assetsLoaded() {
         game.addScreen(GameScreen(game))
-        game.addScreen(MenuScreen(game))
+        game.addScreen(MapScreen(game, mapLoader.load("maps/village.tmx")))
         touchToBeginLabel += forever(sequence(fadeIn(0.5f) + fadeOut(0.5f)))
     }
 

@@ -36,9 +36,7 @@ enum class SoundAsset(
     BOOST_S("boost1.wav"),
     BOOST_L("boost2.wav"),
     LIFE("life.wav"),
-    SHIELD("shield.wav"),
-    DAMAGE("damage.wav"),
-    BLOCK("block.wav")
+    SHIELD("shield.wav")
 }
 
 enum class MusicAsset(

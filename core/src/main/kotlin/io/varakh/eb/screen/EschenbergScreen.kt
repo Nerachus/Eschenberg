@@ -9,7 +9,7 @@ import ktx.app.KtxScreen
 import ktx.assets.async.AssetStorage
 
 abstract class EschenbergScreen(val game: Eschenberg,
-                                private val gameViewport: Viewport = game.gameViewport,
+                                val gameViewport: Viewport = game.gameViewport,
                                 private val pixelViewport: Viewport = game.pixelViewport,
                                 val assets: AssetStorage = game.assets,
                                 val audioService: AudioService = game.audioService,

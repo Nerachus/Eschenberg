@@ -24,7 +24,7 @@ import ktx.collections.gdxArrayOf
 import ktx.log.debug
 import ktx.log.logger
 
-const val UNIT_SCALE = 1 / 16f
+const val UNIT_SCALE = 1 / 48f
 const val WORLD_WIDTH = 16f
 const val WORLD_HEIGHT = 9f
 const val BACKGROUND_WIDTH = 240f
