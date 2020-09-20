@@ -11,8 +11,8 @@ application {
 
 dependencies {
 	implementation(project(":core"))
-	api("com.badlogicgames.gdx:gdx-backend-lwjgl3:${Versions.gdx}")
-	api("com.badlogicgames.gdx:gdx-platform:${Versions.gdx}:natives-desktop")
+	implementation("com.badlogicgames.gdx:gdx-backend-lwjgl3:${Versions.gdx}")
+	implementation("com.badlogicgames.gdx:gdx-platform:${Versions.gdx}:natives-desktop")
 }
 
 sourceSets {
